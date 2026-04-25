@@ -3,10 +3,10 @@
 [![Hardware: CERN-OHL-P](https://img.shields.io/badge/Hardware-CERN--OHL--P-blue.svg)](https://ohwr.org/cern_ohl_p_v2.txt)
 [![Software: MIT](https://img.shields.io/badge/Software-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Alpha](https://img.shields.io/badge/Status-Alpha-orange)](https://github.com/NawfalMotii79/PLFM_RADAR)
+[![Features: Work in Progress](https://img.shields.io/badge/Features-Work_in_Progress-yellow)](https://github.com/NawfalMotii79/PLFM_RADAR/issues)
 [![Frequency: 10.5GHz](https://img.shields.io/badge/Frequency-10.5GHz-blue)](https://github.com/NawfalMotii79/PLFM_RADAR)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/NawfalMotii79/PLFM_RADAR/pulls)
 
-![AERIS-10 Radar System](https://raw.githubusercontent.com/NawfalMotii79/PLFM_RADAR/main/8_Utils/3fb1dabf-2c6d-4b5d-b471-48bc461ce914.jpg)
 
 AERIS-10 is an open-source, low-cost 10.5 GHz phased array radar system featuring Pulse Linear Frequency Modulated (LFM) modulation. Available in two versions (3km and 20km range), it's designed for researchers, drone developers, and serious SDR enthusiasts who want to explore and experiment with phased array radar technology.
 
@@ -46,13 +46,13 @@ The AERIS-10 main sub-systems are:
 
 - **Main Board** containing:
   - **DAC** - Generates the RADAR Chirps
-  - **2x Microwave Mixers (LT5552)** - For up-conversion and IF-down-conversion
+  - **2x Microwave Mixers (LTC5552)** - For up-conversion and IF-down-conversion
   - **4x 4-Channel Phase Shifters (ADAR1000)** - For RX and TX chain beamforming
   - **16x Front End Chips (ADTR1107)** - Used for both Low Noise Amplifying (RX) and Power Amplifying (TX) stages
   - **XC7A50T FPGA** - Handles RADAR Signal Processing on the upstream FTG256 board:
     - PLFM Chirps generation via the DAC
     - Raw ADC data read
-    - Automatic Gain Control (AGC)
+    - Hybrid Automatic Gain Control (AGC) — cross-layer FPGA/STM32/GUI loop
     - I/Q Baseband Down-Conversion
     - Decimation
     - Filtering
@@ -91,7 +91,7 @@ The AERIS-10 main sub-systems are:
 ### Processing Pipeline
 
 1. **Waveform Generation** - DAC creates LFM chirps
-2. **Up/Down Conversion** - LT5552 mixers handle frequency translation
+2. **Up/Down Conversion** - LTC5552 mixers handle frequency translation
 3. **Beam Steering** - ADAR1000 phase shifters control 16 elements
 4. **Signal Processing (FPGA)**:
    - Raw ADC data capture
@@ -110,7 +110,8 @@ The AERIS-10 main sub-systems are:
    - Map integration
    - Radar control interface
 
-![AERIS-10 GUI Demo](https://raw.githubusercontent.com/NawfalMotii79/PLFM_RADAR/main/8_Utils/GUI_V6.gif)
+![AERIS-10 Dashboard](https://raw.githubusercontent.com/NawfalMotii79/PLFM_RADAR/main/8_Utils/GUI_V6.gif)
+<!-- V6 GIF removed — V6 is deprecated. V65 Tk and V7 PyQt6 are the active GUIs. -->
 
 ## 📊 Technical Specifications
 
